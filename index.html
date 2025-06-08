@@ -1,0 +1,105 @@
+<style>
+    .nameError,.emailError,.phoneError{
+        color: red;
+        display: none;
+    }
+    div{
+        background-color:skyblue;
+        padding: 30px;
+        height: 670px;
+        width: 600px;
+       margin-left: 400px;
+       border: solid black 2px;
+
+    }.heading{
+        text-decoration: double;
+        text-align: center;
+        text-decoration: underline;
+       
+    }.submit{
+        background-color: black;
+        width: 100px;
+        height: 30px;
+        color: white;
+        margin-left: 250px;
+        cursor: pointer;
+      
+    }
+    .submit:hover{
+        background-color: grey;
+        color: white;
+         width: 100px;
+        height: 30px;
+    }.input{
+        width: 60%;
+        height: 30px;
+        margin-left: 20px;
+    }.name{
+        font-size: large;
+        margin-left: 20px;
+
+    }
+</style>
+
+
+
+<div>
+    <form>
+        <h1 class="heading">Contact form</h1>
+       <label class="name">Name:</label><br>
+        <input class="input" type="text" placeholder="Enter your name" id="name"><br>
+        <br><br>
+        <span class="nameError">Name must containes letter</span><br>
+        <label class="name">Email:</label><br>
+        <input class="input" type="text" placeholder="Enter your Email" id="email"><br>
+        <br><br>
+        <span class="emailError">Please provide valid email</span><br>
+         <label class="name">Phone number:</label><br>
+        <input class="input" type="text" placeholder="Enter your phone" id="phone"><br>
+        <br><br>
+        <span class="phoneError">Phone number must containes 10 digit</span><br><br><br>
+        <input class="submit" type="submit" id="submit">
+        
+    </form>
+    
+</div>
+ 
+
+<script>
+    var submit =document.getElementById("submit")
+    submit.addEventListener("click",function(){
+        event.preventDefault()
+
+        var nameRegex=/^[a-zA-Z0-9]+$/
+        var emailRegex=/^[a-zA-Z0-9]+@gmail.com/
+        var phoneRegex=/^\d{10}$/
+
+        var name=document.getElementById("name")
+        var email=document.getElementById("email")
+        var phone=document.getElementById("phone")
+        var validate=true
+        if(nameRegex.test(name.value) == false){
+            document.querySelector(".nameError").style.display="block"
+              var validate=false
+        }else{
+             document.querySelector(".nameError").style.display="none"
+        }
+         
+        if(emailRegex.test(email.value)==false){
+             document.querySelector(".emailError").style.display="block"
+               var validate=false
+        }else{
+             document.querySelector(".emailError").style.display="none"
+        }
+
+        if(phoneRegex.test(phone.value)==false){
+             document.querySelector(".phoneError").style.display="block"
+               var validate=false
+        }else{
+             document.querySelector(".phoneError").style.display="none"
+        }
+        if(validate==true){
+           alert("Form submitted successfully")
+        }
+    })
+</script>
